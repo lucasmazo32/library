@@ -7,7 +7,7 @@
   <title>Library</title>
 </head>
 <body>
-  <div class="container-fluid">
+  <div class="container">
     <table>
       <thead>
         <tr>
@@ -21,7 +21,24 @@
     <tbody id="table-content">
     </tbody>
   </table>
-  <script src="assets/javascript/application.js"></script>
+
+  <a id="create-new" class="btn btn-primary new-book my-5">New Book</a>
+
+  <div id="book-form" class="new-form mt-5 d-none">
+    <h6>Add a book</h6>
+    <form class="col-4">
+      <input class="form-control title" placeholder="Title" type="text">
+      <input class="form-control author" placeholder="Author" type="text">
+      <input class="form-control pages" placeholder="Number of pages" type="number">
+      <label>
+        Read
+        <input class="read" type="checkbox">
+      </label>
+      <input type="button" class="btn btn-warning" value="Add">
+    </form>
   </div>
+</div>
+
+  <script src="assets/javascript/application.js"></script>
 </body>
 </html>
