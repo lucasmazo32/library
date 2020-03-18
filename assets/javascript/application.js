@@ -78,31 +78,25 @@ newEntry.addEventListener('click', () => {
   if (field4.checked) {
     readbtn.classList.toggle('btn-danger');
   }
-  readbtn.addEventListener('click', () => {
+  readbtn.addEventListener('click', function foo() {
     this.classList.toggle('btn-danger');
   });
 
-  deletebtn.addEventListener('click', () => {
-    // const elid = this.attributes.id.value;
+  deletebtn.addEventListener('click', function foo() {
     const upEle = this.parentElement.parentElement;
-    // const idloc = parseInt(elid.slice(7, elid.length));
-    // myLibrary.splice(idloc,1);
     upEle.remove();
   });
 });
 
 markRead.forEach(button => {
-  button.addEventListener('click', () => {
+  button.addEventListener('click', function foo() {
     this.classList.toggle('btn-danger');
   });
 });
 
 deleteItem.forEach(button => {
-  button.addEventListener('click', () => {
-    // const elid = this.attributes.id.value;
+  button.addEventListener('click', function foo() {
     const upEle = this.parentElement.parentElement;
-    // const idloc = parseInt(elid.slice(7, elid.length));
-    // myLibrary.splice(idloc,1);
     upEle.remove();
   });
 });
