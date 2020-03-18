@@ -2,6 +2,12 @@ let myLibrary = [];
 
 const table = document.querySelector('#table-content');
 
+const newEntry = document.querySelector('#new-entry');
+const field1 = document.querySelector('.title');
+const field2 = document.querySelector('.author');
+const field3 = document.querySelector('.pages');
+const field4 = document.querySelector('.read');
+
 function Book(title, author, pages, have_read) {
   this.title = title,
   this.author = author,
@@ -51,8 +57,20 @@ template = myLibrary.map(
 
 render(template.join(''), table);
 
+
 const markRead = document.querySelectorAll('.mark-read');
 const deleteItem = document.querySelectorAll('.mark-delete')
+
+
+
+newEntry.addEventListener('click', function(e) {
+  let x = new Book(field1.value, field2.value, field2.value, field4.checked);
+  newRow = document.createElement("TR")
+  newRow.innerHTML = `<td>${x.title}</td><td>${x.author}</td><td>${x.pages}</td><td>${x.createdBtn(cont, readIt).outerHTML}</td><td>${x.createdBtn(cont++, deleteIt).outerHTML}</td>`
+  table.appendChild(newRow);
+  markRead;
+  deleteItem;
+});
 
 markRead.forEach( button => {
   button.addEventListener('click', function(e) {
