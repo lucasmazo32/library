@@ -65,7 +65,7 @@ deleteItem.forEach( button => {
     var elid = this.attributes.id.value;
     var upEle = this.parentElement.parentElement;
     var idloc = parseInt(elid.slice(7, elid.length));
-    myLibrary.splice(idloc,1);
+    // myLibrary.splice(idloc,1);
     upEle.remove();
   });
 });
