@@ -36,9 +36,11 @@ createdBtn.onclick = function() {
   let bookForm = document.getElementById('book-form');
   bookForm.classList.toggle('d-none')};
 
-const book1 = new Book('Hobbit', 'JRR', 260, false);
+let book1 = new Book('Hobbit', 'JRR', 260, false);
 addBookToLibrary(book1);
+book1 = new Book('Hobbit 2', 'JRR', 265, false);
 addBookToLibrary(book1);
+book1 = new Book('Hobbit 3', 'JRR', 265, false);
 addBookToLibrary(book1);
 
 let cont = 0;
@@ -55,13 +57,15 @@ const deleteItem = document.querySelectorAll('.mark-delete')
 markRead.forEach( button => {
   button.addEventListener('click', function(e) {
     this.classList.toggle('btn-danger')
-  // console.log(e.currentTarget); //opttion1
-  console.log(this);  //option2
   });
 });
 
 deleteItem.forEach( button => {
   button.addEventListener('click', function(e) {
-    console.log(this.parentElement.parentElement);
+    var elid = this.attributes.id.value;
+    var upEle = this.parentElement.parentElement;
+    var idloc = parseInt(elid.slice(7, elid.length));
+    myLibrary.splice(idloc,1);
+    upEle.remove();
   });
 });
