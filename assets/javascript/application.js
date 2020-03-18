@@ -1,4 +1,4 @@
-let myLibrary = [];
+const myLibrary = [];
 
 const table = document.querySelector('#table-content');
 
@@ -8,39 +8,37 @@ const field2 = document.querySelector('.author');
 const field3 = document.querySelector('.pages');
 const field4 = document.querySelector('.read');
 
-function Book(title, author, pages, have_read) {
-  this.title = title,
-  this.author = author,
-  this.pages = pages,
-  this.have_read = false
-};
+function Book(title, author, pages) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.have_read = false;
+}
 
-const readIt = "read";
-const deleteIt = "delete";
+const readIt = 'read';
+const deleteIt = 'delete';
 
-Book.prototype.createdBtn = function(cont, action) {
-  var x = document.createElement("input");
-  x.setAttribute("type", "button");
+Book.prototype.createdBtn = (cont, action) => {
+  const x = document.createElement('input');
+  x.setAttribute('type', 'button');
   x.setAttribute('id', `${action}-${cont}`);
   x.setAttribute('value', `${action}`);
-  x.setAttribute('class', `mark-${action} btn btn-danger btn-success`)
-  console.log(cont)
+  x.setAttribute('class', `mark-${action} btn btn-danger btn-success`);
   return x;
 };
 
 function addBookToLibrary(newBook) {
   return myLibrary.push(newBook);
-};
+}
 
-let render = function (template, node) {
-	node.innerHTML = template;
-};
+const render = (template, node) => { node.innerHTML = template; };
 
 const createdBtn = document.getElementById('create-new');
 
-createdBtn.onclick = function() {
-  let bookForm = document.getElementById('book-form');
-  bookForm.classList.toggle('d-none')};
+createdBtn.onclick = () => {
+  const bookForm = document.getElementById('book-form');
+  bookForm.classList.toggle('d-none');
+};
 
 let book1 = new Book('Hobbit', 'JRR', 260, false);
 addBookToLibrary(book1);
@@ -51,38 +49,59 @@ addBookToLibrary(book1);
 
 let cont = 0;
 
-template = myLibrary.map(
-    x => `<tr><td>${x.title}</td><td>${x.author}</td><td>${x.pages}</td><td>${x.createdBtn(cont, readIt).outerHTML}</td><td>${x.createdBtn(cont++, deleteIt).outerHTML}</td></tr>`
-  );
+const template = [];
+
+for (let i = 0; i < myLibrary.length; i += 1) {
+  cont += 1;
+  template.push(`<tr><td>${myLibrary[i].title}</td><td>${myLibrary[i].author}</td><td>${myLibrary[i].pages}</td><td>${myLibrary[i].createdBtn(i, readIt).outerHTML
+  }</td><td>${myLibrary[i].createdBtn(i, deleteIt).outerHTML}</td></tr>`);
+}
 
 render(template.join(''), table);
 
-
 const markRead = document.querySelectorAll('.mark-read');
-const deleteItem = document.querySelectorAll('.mark-delete')
+const deleteItem = document.querySelectorAll('.mark-delete');
 
-
-
-newEntry.addEventListener('click', function(e) {
-  let x = new Book(field1.value, field2.value, field2.value, field4.checked);
-  newRow = document.createElement("TR")
-  newRow.innerHTML = `<td>${x.title}</td><td>${x.author}</td><td>${x.pages}</td><td>${x.createdBtn(cont, readIt).outerHTML}</td><td>${x.createdBtn(cont++, deleteIt).outerHTML}</td>`
+newEntry.addEventListener('click', () => {
+  const x = new Book(field1.value, field2.value, field3.value, field4.checked);
+  const newRow = document.createElement('TR');
+  newRow.innerHTML = `<td>${x.title}</td><td>${x.author}</td><td>${
+    x.pages
+  }</td><td>${x.createdBtn(cont, readIt).outerHTML}</td><td>${
+    x.createdBtn(cont, deleteIt).outerHTML
+  }</td>`;
   table.appendChild(newRow);
-  markRead;
-  deleteItem;
-});
+  cont += 1;
 
-markRead.forEach( button => {
-  button.addEventListener('click', function(e) {
-    this.classList.toggle('btn-danger')
+  const readbtn = document.querySelector(`#read-${cont - 1}`);
+  const deletebtn = document.querySelector(`#delete-${cont - 1}`);
+  if (field4.checked) {
+    readbtn.classList.toggle('btn-danger');
+  }
+  readbtn.addEventListener('click', () => {
+    this.classList.toggle('btn-danger');
+  });
+
+  deletebtn.addEventListener('click', () => {
+    // const elid = this.attributes.id.value;
+    const upEle = this.parentElement.parentElement;
+    // const idloc = parseInt(elid.slice(7, elid.length));
+    // myLibrary.splice(idloc,1);
+    upEle.remove();
   });
 });
 
-deleteItem.forEach( button => {
-  button.addEventListener('click', function(e) {
-    var elid = this.attributes.id.value;
-    var upEle = this.parentElement.parentElement;
-    var idloc = parseInt(elid.slice(7, elid.length));
+markRead.forEach(button => {
+  button.addEventListener('click', () => {
+    this.classList.toggle('btn-danger');
+  });
+});
+
+deleteItem.forEach(button => {
+  button.addEventListener('click', () => {
+    // const elid = this.attributes.id.value;
+    const upEle = this.parentElement.parentElement;
+    // const idloc = parseInt(elid.slice(7, elid.length));
     // myLibrary.splice(idloc,1);
     upEle.remove();
   });
