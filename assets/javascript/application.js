@@ -18,7 +18,6 @@ Book.prototype.createdBtn = function(cont, action) {
   x.setAttribute('id', `${action}-${cont}`);
   x.setAttribute('value', `${action}`);
   x.setAttribute('class', `mark-${action} btn btn-danger btn-success`)
-  cont++
   console.log(cont)
   return x;
 };
@@ -45,7 +44,7 @@ addBookToLibrary(book1);
 let cont = 0;
 
 template = myLibrary.map(
-    x => `<tr><td>${x.title}</td><td>${x.author}</td><td>${x.pages}</td><td>${x.createdBtn(cont, readIt).outerHTML}</td><td>${x.createdBtn(cont, deleteIt).outerHTML}</td></tr>`
+    x => `<tr><td>${x.title}</td><td>${x.author}</td><td>${x.pages}</td><td>${x.createdBtn(cont, readIt).outerHTML}</td><td>${x.createdBtn(cont++, deleteIt).outerHTML}</td></tr>`
   );
 
 render(template.join(''), table);
