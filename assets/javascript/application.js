@@ -90,7 +90,7 @@ newEntry.addEventListener('click', () => {
     });
   } else {
     const warn = document.createElement('P');
-    warn.setAttribute('class', 'bg-warning p-3 mt-3')
+    warn.setAttribute('class', 'bg-warning p-3 mt-3 border-rounded')
     warn.innerHTML = 'Great job, however, there are some changes that need to be implemented before moving on: make sure you fill out all fields before resubmitting';
     actualForm.appendChild(warn);
   }
