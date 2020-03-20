@@ -34,7 +34,7 @@ function addBookToLibrary(newBook) {
 const render = (template, node) => { node.innerHTML = template; };
 
 const createdBtn = document.getElementById('create-new');
-const actualForm = document.querySelector('.new-book-form')
+const actualForm = document.querySelector('.new-book-form');
 createdBtn.onclick = () => {
   const bookForm = document.getElementById('book-form');
   bookForm.classList.toggle('d-none');
@@ -90,7 +90,7 @@ newEntry.addEventListener('click', () => {
     });
   } else {
     const warn = document.createElement('P');
-    warn.setAttribute('class', 'bg-warning p-3 mt-3 border-rounded')
+    warn.setAttribute('class', 'bg-warning p-3 mt-3 border-rounded');
     warn.innerHTML = 'Great job, however, there are some changes that need to be implemented before moving on: make sure you fill out all fields before resubmitting';
     actualForm.appendChild(warn);
   }
